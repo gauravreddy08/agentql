@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background-color: #0a0a0a;
+  border-bottom: 1px solid #1f1f1f;
+  height: 60px;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.logo-icon {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.logo-text {
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.navbar-credit {
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: 500;
+}
