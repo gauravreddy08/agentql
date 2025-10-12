@@ -1,7 +1,8 @@
 openai==2.3.0
 toml==0.10.2
 playwright==1.55.0
+crawl4ai
+beautifulsoup4==4.14.2
+lxml==5.4.0
 flask==3.0.0
 flask-cors==4.0.0
-crawl4ai
-gunicorn

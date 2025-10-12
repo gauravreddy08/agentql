@@ -3,6 +3,7 @@ from flask_cors import CORS
 from src.agents.query import Agent as QueryAgent
 from src.agents.extract import Agent as ExtractAgent
 from src.scrape import scrape_webpage
+from src.screenshot import take_screenshot
 import json
 import traceback
 
@@ -98,25 +99,13 @@ def get_screenshot():
         if not url:
             return jsonify({'error': 'URL is required'}), 400
         
-        # Import playwright for screenshot
-        import asyncio
-        from playwright.async_api import async_playwright
-        import base64
+        # Take screenshot using the screenshot module
+        screenshot_result = take_screenshot(url)
         
-        async def take_screenshot():
-            async with async_playwright() as p:
-                browser = await p.chromium.launch(headless=True)
-                context = await browser.new_context(
-                    viewport={'width': 1280, 'height': 1024}
-                )
-                page = await context.new_page()
-                await page.goto(url, timeout=30000)
-                screenshot_bytes = await page.screenshot(full_page=True)
-                await browser.close()
-                return base64.b64encode(screenshot_bytes).decode('utf-8')
+        if not screenshot_result['success']:
+            return jsonify({'error': f"Failed to take screenshot: {screenshot_result['error']}"}), 500
         
-        screenshot_base64 = asyncio.run(take_screenshot())
-        return jsonify({'screenshot': screenshot_base64})
+        return jsonify({'screenshot': screenshot_result['screenshot']})
     
     except Exception as e:
         print(f"Error in get_screenshot: {str(e)}")
@@ -130,5 +119,5 @@ def health_check():
 if __name__ == '__main__':
     import os
     port = int(os.environ.get('PORT', 8000))
-    debug = os.environ.get('FLASK_ENV') == 'development'
+    debug = os.environ.get('FLASK_ENV') == 'production'
     app.run(debug=debug, host='0.0.0.0', port=port)
