@@ -6,3 +6,6 @@ healthcheckPath = "/api/health"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
+
+[build.env]
+PLAYWRIGHT_BROWSERS_PATH = "/opt/render/.cache"

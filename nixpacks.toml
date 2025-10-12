@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["python39", "nodejs", "chromium"]
+
+[phases.install]
+cmds = [
+    "pip install -r requirements.txt",
+    "playwright install chromium --with-deps"
+]
+
+[phases.build]
+cmds = ["echo 'Build phase complete'"]
+
+[start]
+cmd = "python api_server.py"

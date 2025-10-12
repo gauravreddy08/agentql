@@ -32,6 +32,7 @@ ENV/
 .env.development.local
 .env.test.local
 .env.production.local
+railway-env-vars-actual.txt
 
 # IDE
 .vscode/
