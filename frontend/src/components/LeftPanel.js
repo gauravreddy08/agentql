@@ -24,6 +24,18 @@ const EXAMPLES = [
     price
   }
 }`
+  },
+  {
+    name: 'Amazon iPhone 17',
+    url: 'https://www.amazon.com/s?k=iphone+17',
+    schema: `{
+  products[] {
+    product_name
+    price
+    rating
+    rating_count
+  }
+}`
   }
 ];
 
